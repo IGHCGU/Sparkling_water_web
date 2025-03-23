@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body {
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}
+
+.cell {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+
+.cell .glass {
+    position: relative;
+    width: 85vw;
+    height: 80vh;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 17px;
+    border: solid 1px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.glass .shell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55vw;
+    height: 98.5%;
+    position: absolute;
+    border-radius: 17px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .6);
+    margin: 5px;
+    /*重点隐藏*/
+    overflow: hidden;
+}
+
+.shell .image {
+    width: 500%;
+    /*重点宽度取决于图片张数*/
+    height: 100%;
+    left: 0;
+    /*盒模型距离搭配width使用*/
+    display: flex;
+    position: absolute;
+    transition: 0.3s;
+}
+
+.shell .image .img {
+    width: 100%;
+    background-size: cover;
+    border-radius: 17px;
+}
+
+.img:nth-child(1) {
+    background-image: url(../img/044_94315772_p1.jpg);
+}
+
+.img:nth-child(2) {
+    background-image: url(../img/1580215168129_80dac34a3e578d777791c5829ecd5e4e_4_3_art.jpg);
+}
+
+.img:nth-child(3) {
+    background-image: url(../img/042_94823287_p0.jpg);
+}
+
+.img:nth-child(4) {
+    background-image: url(../img/064_83319472_p1.jpg);
+}
+
+.img:nth-child(5) {
+    background-image: url(../img/1592834832528_27b47eddaf02ecc2b021f816d0c47c67_2_3_art.jpg);
+}
+
+.shell .di {
+    display: flex;
+    position: absolute;
+    bottom: 40px;
+    justify-content: space-around;
+    width: 30%;
+    z-index: 1;
+    background-color: rgba(218, 221, 226, .89);
+    border-radius: 17px;
+}
+
+.shell .di .d {
+    width: 30px;
+    height: 30px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    /* background-color: rgba(255, 255, 255, .5); */
+    cursor: pointer;
+}
+
+.shell .button {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    user-select: none;
+    justify-content: space-between;
+}
+
+.shell .button .left,
+.shell .button .right {
+    cursor: pointer;
+    font-size: 5em;
+    color: rgba(255, 255, 255, .8);
+    background-color: rgba(255, 255, 255, .4);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 17px;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, .55);
+    }
+
+}
+
+.glass .option {
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgba(255, 255, 255, .2); */
+    width: 27.7vw;
+    height: 98.5%;
+    position: absolute;
+    margin: 5px;
+    right: 1vw;
+    border-radius: 17px;
+}
+
+.option .card {
+    display: flex;
+    position: relative;
+    width: 28vw;
+    height: 20%;
+    margin: 5px 10px 5px 5px;
+    /* background-color: rgba(255, 255, 255, .8); */
+    border-radius: 17px;
+    /* /* border: solid 1px rgba(255, 255, 255, .6); */
+    /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); */
+    perspective: 200px;
+    background-size: cover;
+    perspective: 300px;
+    transition: all .5s;
+}
+
+.option .card .wallpaper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.option .card:hover .wallpaper {
+    transform: perspective(220px) rotateX(25deg);
+}
+
+.option .card .wallpaper::after,
+.option .card .wallpaper::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 17px;
+    transition: all .3s;
+    position: absolute;
+    left: 0;
+}
+
+.option .card .wallpaper::before {
+    top: 0;
+    opacity: 0;
+    background-image: linear-gradient(to top,
+            transparent 46%,
+            rgba(255, 255, 255, 0.5) 88%,
+            rgba(255, 255, 255, 0.9) 97%);
+}
+
+.option .card .wallpaper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(to bottom,
+            transparent 46%,
+            rgba(250, 250, 250, 0.5) 88%,
+            rgba(255, 255, 255, 0.9) 97%);
+}
+
+.option .card:hover .wallpaper::after,
+.option .card:hover .wallpaper::before {
+    opacity: 1;
+}
+
+.option .wallpaper .chara {
+    border-radius: 17px;
+    width: 100%;
+    height: 100%;
+}
+
+.option .card .charas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 17px;
+}
+
+.option .card:hover .charas {
+    transform: translate3d(0%, -20%, 130px);
+    opacity: 1;
+    object-fit: contain;
+}
+
+.option .card:hover {
+    transform: translateY(10px);
+}
